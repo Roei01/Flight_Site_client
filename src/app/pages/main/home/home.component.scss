@@ -1,0 +1,835 @@
+
+
+
+:host {
+  display: block;
+  background: linear-gradient(135deg, #e0e6ee, #fffbfb); /* גרדיאנט ליניארי */
+  padding: 20px;
+  border-radius: 10px;
+  background-attachment: fixed;
+  font-family: Arial, sans-serif;
+
+}
+
+
+.home-container {
+  margin-top: 70px; /* גובה שמתאים לגובה סרגל הכלים */
+  background: linear-gradient(135deg, #e0e6ee, #fffbfb); /* גרדיאנט ליניארי */
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+  font-family: Arial, sans-serif;
+  background-color: #fcfcfc;
+  border-radius: 20px;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+}
+
+.ad-container {
+  position: fixed;
+  
+  top: 30%;
+  right: 20; /* מיקום ימני */
+  z-index: 100;
+  width: 300px; /* קביעת רוחב תיבת המודעה */
+  height: 500px;
+  background-color: #d7dee6; /* צבע רקע */
+  border-radius: 10px; /* פינות מעוגלות */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* צל עדין */
+  padding: 15px; /* רווח פנימי */
+  overflow-y: auto; /* גלילה אנכית במידת הצורך */
+  color: #f5f5f5; /* צבע טקסט */
+  font-family: Arial, sans-serif; /* גופן כללי */
+  overflow: hidden; /* ביטול גלילה ידנית והסתרת פס הגלילה */
+  animation: fadeInSlideUp 1s ease-in-out; /* אנימציית כניסה */
+
+}
+
+.ad-box-wrapper {
+  display: flex;
+  flex-direction: column;
+  animation: scrollInfinite 20s linear infinite;
+}
+
+@keyframes scrollInfinite {
+  0% {
+    transform: translateY(0);
+  }
+  100% {
+    transform: translateY(-100%);
+  }
+}
+
+@keyframes fadeInSlideUp {
+  0% {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* תיבת מודעה */
+.ad-box {
+  display: flex;
+  align-items: center;
+  margin-bottom: 15px; /* מרווח בין המודעות */
+  border-bottom: 1px solid #444; /* קו תחתון להפרדה בין מודעות */
+  padding-bottom: 10px; /* רווח פנימי בתחתית */
+}
+
+.ad-box:last-child {
+  margin-bottom: 0;
+  border-bottom: none;
+}
+
+/* תמונה במודעה */
+.ad-image {
+  width: 80px; /* רוחב התמונה */
+  height: 80px; /* גובה התמונה */
+  border-radius: 10px; /* פינות מעוגלות לתמונה */
+  margin-right: 10px; /* רווח בין התמונה לטקסט */
+}
+
+/* עיצוב תוכן המודעה */
+.ad-content h4 {
+  margin: 0;
+  font-size: 16px;
+  color: #585858; /* צבע הכותרת */
+}
+
+.ad-content p {
+  margin: 5px 0;
+  font-size: 14px;
+  color: #979797; /* צבע טקסט משנה */
+}
+
+.ad-content a {
+  color: #007bff; /* צבע הקישור */
+  text-decoration: none;
+  font-size: 14px;
+}
+
+.ad-content a:hover {
+  text-decoration: underline; /* קו תחתון בעת מעבר עכבר */
+}
+
+/* הסתרת המודעות במובייל */
+@media (max-width: 1545px) {
+  .ad-container {
+    display: none;
+  }
+}
+
+
+h2 {
+  font-family: Arial, sans-serif;
+
+  text-align: center;
+  margin-bottom: 20px;
+}
+.search-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 20px;
+  max-width: 100%;
+}
+
+.search-container input {
+  width: calc(70% - 50px); /* הגדלת רוחב שדה החיפוש */
+  padding: 15px 20px; /* הגדלת הפדינג בתוך שדה החיפוש */
+  border: 1px solid #ccc;
+  border-radius: 50px; /* פינות עגולות לחלוטין */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: box-shadow 0.3s ease, border-color 0.3s ease;
+  font-size: 18px; /* הגדלת גודל הטקסט */
+  outline: none;
+}
+
+.search-container input:focus {
+  border-color: #007bff;
+  box-shadow: 0 6px 12px rgba(0, 123, 255, 0.2);
+}
+
+.search-container button {
+  padding: 15px 25px;
+  border: none;
+  background-color: #007bff;
+  color: #fff;
+  border-radius: 50px; /* גם לכפתור יהיו פינות עגולות לחלוטין */
+  cursor: pointer;
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+  font-size: 18px; /* התאמת גודל הטקסט לכפתור */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  outline: none;
+  margin-left: -1px; /* ביטול הרווח בין הכפתור לשדה החיפוש */
+}
+
+.search-container button:hover {
+  background-color: #0056b3;
+  box-shadow: 0 6px 12px rgba(0, 86, 179, 0.2);
+}
+
+@media (max-width: 768px) {
+  .search-container {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .search-container input {
+    width: 50%;
+    border-radius: 50px;
+    margin-right: 0;
+  }
+
+  .search-container button {
+    width: 30%;
+    border-radius: 50px;
+    margin-left: 0;
+  }
+}
+
+
+.content-section {
+  margin-bottom: 30px;
+}
+
+
+.user-link {
+  display: flex;
+  align-items: center; /* יישור אנכי של התמונה והטקסט */
+}
+
+.profile-image {
+  border-radius: 50%;
+  margin-right: 10px; /* מרווח מימין לתמונה */
+}
+
+.post-date {
+  margin-left: auto; /* דחיפה של תאריך לפריסה מלאה */
+}
+
+.post {
+  background: #fff;
+  border: 1px solid #ddd;
+  padding: 20px;
+  margin-bottom: 20px;
+  border-radius: 10px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  margin-top: 20px; /* Add top margin here */
+
+}
+
+.post-image {
+  max-width: 100%;
+  height: auto;
+  border-radius: 5px;
+  margin-bottom: 15px;
+}
+
+.post-description {
+  font-size: 16px;
+  margin-bottom: 10px;
+}
+
+.post-author {
+  font-size: 14px;
+  color: #555;
+  margin-bottom: 10px;
+}
+
+.post-author a {
+  text-decoration: none;
+  color: #007bff;
+}
+
+.post-author a:hover {
+  text-decoration: underline;
+}
+
+.info-group {
+  display: flex;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.info-button {
+  padding: 10px 15px;
+  border: none;
+  background-color: #007bff;
+  color: #fff;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.info-button:hover {
+  background-color: #0056b3;
+}
+
+.edit-button {
+  background-color: #007bff;
+  color: #fff;
+}
+
+.save-button {
+  background-color: #007bff;
+}
+
+.cancel-button {
+  background-color: #fff;
+  color: #007bff;
+  border: 1px solid #007bff;
+}
+
+.ok-button {
+  background-color: #fff;
+  color: #007bff;
+  border: 1px solid #007bff;
+}
+
+.ok-button:hover{
+  background-color: #007bff;
+  color: #fff;
+}
+
+/* Dialog styling */
+.edit-dialog, .success-dialog, .delete-dialog {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: white;
+  border: 1px solid #ddd;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  z-index: 1000;
+  background-color: #ECF0F1;
+
+}
+
+
+.textarea-container {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start; /* הצמדת הטקסט למספר התווים לקצה הימני */
+  width: 100%;
+}
+
+.textarea-container textarea {
+  resize: none;
+  overflow-y: auto;
+  min-height: 100px;
+  max-height: 300px;
+  width: 100%;
+  padding: 15px 20px;
+  background: #ffffff;
+  border: 2px solid #007bff;
+  border-radius: 10px;
+  color: #000000;
+  font-size: 16px;
+  line-height: 1.5;
+  box-sizing: 40px;
+  transition: border-color 0.3s ease;
+  margin-bottom: 1px; /* רווח תחתון בין הטקסט לאזור הספירה */
+}
+
+.textarea-container .char-count {
+  font-size: 12px;
+  color: #000000;
+}
+
+
+.edit-dialog textarea {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  margin-bottom: 10px;
+}
+
+.edit-dialog input[type="file"] {
+  display: block;
+  margin-bottom: 10px;
+}
+
+.remove-image-button {
+  background-color: #dc3545; /* Red color */
+  color: white;
+}
+
+.remove-image-button:hover {
+  background-color: #b62b39;
+}
+
+.edit-image-preview {
+  max-width: 100%;
+  height: auto;
+  border-radius: 5px;
+  margin-bottom: 10px;
+}
+
+.success-dialog p {
+  margin: 0;
+}
+
+.success-dialog .ok-button {
+  margin-top: 20px;
+}
+
+
+.info-button.delete-button:hover {
+  background-color: #b62b39; 
+}
+
+.delete-dialog {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: white;
+  border: 1px solid #ddd;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  z-index: 1000;
+}
+
+.delete-dialog-buttons {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px;
+}
+
+.cancel-button {
+  background-color: #fff;
+  color: #007bff;
+  border: 1px solid #007bff;
+}
+
+.cancel-button:hover {
+  background-color: #007bff;
+  color: #fff;
+}
+
+.confirm-button {
+  background-color: #dc3545;
+  color: #fff;
+}
+
+.confirm-button:hover {
+  background-color: #b62b39; 
+}
+
+
+.form-container {
+  background: linear-gradient(135deg, #fffbfb, #c3d6f3); /* Gradient background */
+  padding: 20px; /* Padding around the form */
+  border: 1px solid #acacac;
+  border-radius: 15px; /* Rounded corners */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Slight shadow for depth */
+  max-width: 700px; /* Maximum width of the form */
+  margin: 40px auto; /* Center the form with some top margin */
+  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+}
+
+.form-container input[type="file"] {
+  margin-top: 20px; /* Margin above the file input */
+  display: block;
+  margin-bottom: 15px; /* Margin below the file input */
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  width: 100%;
+  box-sizing: border-box;
+  transition: border-color 0.3s ease;
+}
+
+.form-container input[type="file"]:hover {
+  border-color: #007bff; /* Border color on hover */
+}
+
+.form-container textarea {
+  width: 90%;
+  padding: 15px; /* Padding inside the textarea */
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  margin-bottom: 15px; /* Margin below the textarea */
+  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  resize: vertical; /* Allow vertical resizing */
+  transition: border-color 0.3s ease;
+}
+
+.form-container textarea:hover {
+  border-color: #007bff; /* Border color on hover */
+}
+
+.form-container button {
+  padding: 12px 25px; /* Padding inside the button */
+  
+  border: none;
+  background-color: #28a745; /* Button background color */
+  color: #fff; /* Button text color */
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: background-color 0.3s, box-shadow 0.3s, transform 0.3s; /* Transition for hover effects */
+}
+
+.form-container button:hover {
+  
+  background-color: #218838; /* Button background color on hover */
+  box-shadow: 0 4px 8px rgba(33, 136, 56, 0.4); /* Box shadow on hover */
+  transform: translateY(-2px); /* Slight upward movement on hover */
+}
+
+.form-container button:active {
+  transform: translateY(0); /* Reset movement on active */
+}
+
+@media (max-width: 600px) {
+  .form-container {
+    padding: 20px; /* Reduce padding on mobile */
+    margin: 20px; /* Reduce margin on mobile */
+  }
+
+  .form-container button {
+    width: auto; /* Do not make button full-width on mobile */
+    padding: 10px 20px; /* Make button smaller */
+    font-size: 14px; /* Smaller font size */
+  }
+
+  .custom-file-upload {
+    width: 40px;
+    height: 40px;
+    line-height: 26px;
+  }
+
+  .custom-file-upload .upload-icon {
+    width: 20px;
+    height: 20px;
+  }
+
+  .button-container {
+    justify-content: flex-end; /* Keep the button to the right */
+    margin-top: 10px; /* Adjust margin if needed */
+  }
+}
+
+/* עיצוב כפתור ה-Upload */
+.button-container {
+  display: flex;
+  justify-content: flex-end; /* הזזת הכפתור ימינה */
+  margin-top: -50px; /* העלאת הכפתור כלפי מעלה */
+}
+
+
+/* עיצוב הכפתור להעלאת קובץ */
+.file-upload-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 20px;
+
+}
+
+.file-name {
+  font-size: 14px;
+  color: #333;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 200px; /* Limit the width of the file name */
+}
+
+.custom-file-upload {
+  display: inline-block;
+  padding: 10px;
+  cursor: pointer;
+  background-color: #a5bdd6;
+  color: white;
+  border-radius: 50%;
+  font-size: 24px;
+  width: 50px;
+  height: 50px;
+  text-align: center;
+  line-height: 30px;
+  transition: background-color 0.3s ease;
+}
+
+.custom-file-upload .upload-icon {
+  width: 24px;
+  height: 24px;
+  margin-top: 13px;
+}
+
+.custom-file-upload:hover {
+  background-color: #2865a7;
+}
+
+#file-upload {
+  display: none;
+}
+
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px) scale(0.95); /* הזזה ושינוי גודל */
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(1px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+
+
+.home-container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+  font-family: Arial, sans-serif;
+  animation: fadeIn 1s ease-out; /* הוספת אנימציה */
+}
+
+h2 {
+  text-align: center;
+  margin-bottom: 20px;
+  animation: fadeIn 1.2s ease-out; /* הוספת אנימציה */
+}
+
+.search-container {
+  text-align: center;
+  margin-bottom: 20px;
+  animation: fadeIn 1.4s ease-out; /* הוספת אנימציה */
+}
+
+.form-container {
+  background: linear-gradient(135deg, #fffbfb, #c3d6f3); /* Gradient background */
+  padding: 20px; /* Padding around the form */
+  border: 1px solid #acacac;
+  border-radius: 15px; /* Rounded corners */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Slight shadow for depth */
+  max-width: 700px; /* Maximum width of the form */
+  margin: 40px auto; /* Center the form with some top margin */
+  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  animation: fadeIn 1.6s ease-out; /* הוספת אנימציה */
+}
+
+
+
+
+
+.post-type {
+  color: #0054b4; /* Or any color you prefer */
+  margin-bottom: 10px;
+  display: block;
+  font-size: 12px;
+}
+
+/* rest of your existing CSS */
+.content-section {
+  margin-bottom: 30px;
+}
+
+
+
+
+.outer-frame {
+  padding: 10px;
+  border: 2px solid #ddd; 
+  border-radius: 10px; 
+  box-shadow: 0 4px 8px rgba(24, 130, 201, 0.144); /* מוסיף צל עדין למסגרת החיצונית ליצירת עומק. אפשר לשנות את מיקום הצל, גודלו וצבעו. */
+  background-color: #f9f9f9;
+  margin-bottom: 0px; 
+  margin-top: 60px; 
+  
+}
+
+.user-wrapper {
+  transform: translate(-10px, -60px);
+  padding: 5px 10px; 
+  border-radius: 10px; 
+  z-index: 2; 
+}
+
+
+
+.post-header {
+  display: flex; 
+  align-items: center; 
+  margin-bottom: 20px;
+}
+
+.post-header .user-link {
+  margin-right: auto;
+
+}
+
+.post-description {
+  margin-bottom: 10px;
+  color: #333;
+}
+
+.info-group {
+  display: flex; 
+  gap: 10px; 
+  margin-top: 10px; 
+}
+
+.info-button {
+  padding: 10px 15px;
+  border: none; 
+  background-color: #007bff; 
+  color: rgb(0, 0, 0); 
+  border-radius: 5px; 
+  cursor: pointer;
+}
+
+
+
+.container {
+  position: relative; /* ההורה חייב להיות מוגדר כ-relative כדי שה-child יוכל להיות ממוקם עם absolute */
+  width: 96%; /* ניתן לשנות בהתאם לצורך */
+  height: 78px; /* ניתן לשנות בהתאם לצורך */
+}
+
+
+.form-group {
+  margin-bottom: 20px;
+  font-family: 'Arial', sans-serif;
+}
+
+
+
+.interest-label {
+  display: block;
+  font-size: 16px;
+  font-weight: bold;
+  margin-bottom: 10px;
+  color: #2C3E50;
+}
+
+
+.custom-select {
+  appearance: none;
+  width: 100%;
+  padding: 10px 15px;
+  border: 1px solid #BDC3C7;
+  border-radius: 5px;
+  background-color: #fff;
+  font-size: 16px;
+  color: #34495E;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  transition: box-shadow 0.3s, border-color 0.3s ease;
+
+  &:focus {
+    border-color: #1ABC9C;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    outline: none;
+  }
+
+  &:hover {
+    border-color: #16A085;
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.15);
+  }
+}
+
+
+.info-button {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem; /* רווח בין האייקון לטקסט */
+  padding: 10px 15px;
+  border: none;
+  background-color: #b4bfcc;
+  color: #000000;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, color 0.3s ease;
+
+    img {
+      width: 20px; /* גודל האייקון */
+      height: 20px;
+      transition: transform 0.3s ease; /* אנימציה להגדלה בעת מעבר עם העכבר */
+  }
+
+  &:hover {
+      background-color: #48719c;
+      color: #fff;
+
+      img {
+          transform: scale(1.1); /* הגדלת האייקון בעת מעבר עם העכבר */
+      }
+  }
+}
+
+.edit-button {
+  background-color: #7ebe8d;
+  color: #000000;
+
+  &:hover {
+    background-color: #29aa3a;
+    color: #e4e6eb;
+}
+}
+
+
+.info-button.delete-button {
+  background-color: #da4554; 
+  color: #181818;
+  right: 10px;
+  bottom: 10px;
+  &:hover {
+    background-color: #ee0101;
+    color: #e4e6eb;
+  }
+}
+
+
+.info-group {
+  display: flex;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+
+@media (max-width: 768px) {
+  .info-group {
+    display: flex;
+    flex-direction: row; /* הצגת הכפתורים בשורה אחת */
+    flex-wrap: wrap; /* מאפשר לכפתורים לרדת לשורה חדשה במידת הצורך */
+    gap: 5px; /* רווחים קטנים יותר בין הכפתורים בניידים */
+  }
+
+  .info-button {
+    display: flex;
+    justify-content: center;
+    padding: 8px 12px; /* התאמה של הפדינג לכפתורים בניידים */
+    font-size: 14px; /* גודל טקסט קטן יותר */
+    flex: 1 1 auto; /* הכפתורים יתפסו מקום שווה וירדו שורה במידת הצורך */
+    
+    img {
+      width: 18px; /* התאמה של גודל האייקון לניידים */
+      height: 18px;
+    }
+  }
+}
+
+
+

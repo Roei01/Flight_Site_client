@@ -1,0 +1,7 @@
+<main class="main-wrapper" style="height: 100%; width: 100%;" [ngClass]="{ active: (router.url !== '/login') }">
+    <div class="header" [ngClass]="{ active: (router.url === '/login') }">
+        <img class="logo" src="assets/images/logo.png" alt="">
+        <app-header *ngIf="router.url !== '/login'"></app-header>
+    </div>
+    <router-outlet></router-outlet>
+</main>
