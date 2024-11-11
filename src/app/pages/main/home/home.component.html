@@ -100,43 +100,38 @@
 </div>
 
 
-
 <div class="home-container">
   <div class="flight-search-container">
-    <h2>חיפוש טיסות</h2>
+    <h2>Flight Search</h2>
     <form (ngSubmit)="searchFlights()">
       <div>
-        <label for="origin">עיר מוצא:</label>
+        <label for="origin">Origin City:</label>
         <input type="text" id="origin" [(ngModel)]="origin" name="origin" />
       </div>
       <div>
-        <label for="destination">עיר יעד:</label>
+        <label for="destination">Destination City:</label>
         <input type="text" id="destination" [(ngModel)]="destination" name="destination" />
       </div>
       <div>
-        <label for="date">תאריך:</label>
+        <label for="date">Date:</label>
         <input type="date" id="date" [(ngModel)]="date" name="date" />
       </div>
-      <div>
-        <label for="time">שעה:</label>
-        <input type="time" id="time" [(ngModel)]="time" name="time" />
-      </div>
-      <button type="submit">חפש טיסות</button>
+      <button type="submit">Search Flights</button>
     </form>
   </div>
-  
-  <!-- כפתור לטעינת כל הטיסות -->
-  <button (click)="loadAllFlights()">טען את כל הטיסות</button>
-  
-  <!-- הצגת כל הטיסות או תוצאות החיפוש -->
+
+  <button (click)="loadAllFlights()">Load All Flights</button>
+
+  <!-- Displaying the flight results -->
   <div *ngIf="flightResults.length > 0" class="flight-results">
-    <h3>תוצאות חיפוש</h3>
+    <h3>Flight Results</h3>
     <div *ngFor="let flight of flightResults" class="flight-card">
-      <p><strong>מ{{ flight.origin }} ל{{ flight.destination }}</strong></p>
-      <p><strong>תאריך:</strong> {{ flight.date }}</p>
-      <p><strong>שעה:</strong> {{ flight.time }}</p>
-      <p class="price">מחיר: ${{ flight.price }}</p>
-      <button class="booking-btn" (click)="bookFlight(flight)">הזמן טיסה</button>
+      <p><strong>From {{ flight.origin }} to {{ flight.destination }}</strong></p>
+      <p><strong>Date:</strong> {{ flight.date }}</p>
+      <p><strong>Price:</strong> ${{ flight.price }}</p>
+      <button class="booking-btn" (click)="bookFlight(flight)">Book Flight</button>
+      <a [href]="flight.bookingLink" target="_blank" class="details-link">View Details</a>
     </div>
   </div>
 </div>
+
