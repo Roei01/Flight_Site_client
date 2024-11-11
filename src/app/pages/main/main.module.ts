@@ -20,7 +20,6 @@ import { HeaderComponent } from '../../components/header/header.component';
 import { LocationStrategy, HashLocationStrategy } from '@angular/common'; //addd
 import { RouterModule } from '@angular/router'; // add
 import { MatIconModule } from '@angular/material/icon';
-import { RemoveSharedPrefixPipe } from './home/remove-shared-prefix.pipe'; // עדכן את הנתיב לפי מיקום ה-Pipe
 
 
 @NgModule({
@@ -30,7 +29,6 @@ import { RemoveSharedPrefixPipe } from './home/remove-shared-prefix.pipe'; // ע
         LoginComponent,
         SlideshowComponent,
         HeaderComponent,
-        RemoveSharedPrefixPipe,
     ],
     imports: [
         MainRoutingModule,
