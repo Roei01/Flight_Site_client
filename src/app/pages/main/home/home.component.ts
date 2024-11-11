@@ -21,13 +21,13 @@ export class HomeComponent implements OnInit {
   destination: string = '';
   date: string = '';
   time: string = '';
-  flightResults: Flight[] = []; // תוצאות החיפוש של הטיסות
+  flightResults: Flight[] = [];
   private apiUrl = 'http://localhost:3000'; // כתובת ה-API של השרת שלך
 
   constructor(private http: HttpClient, private authService: AuthService) {}
 
   ngOnInit(): void {
-    // טעינה של כל הטיסות ברגע שהרכיב נטען
+    // טעינה ראשונית של כל הטיסות
     this.loadAllFlights();
   }
 
@@ -58,8 +58,16 @@ export class HomeComponent implements OnInit {
       });
   }
 
-  // פונקציה לבחירת טיסה להצגה
-  selectFlight(flight: Flight) {
-    alert(`נבחרה טיסה: ${flight.flightNumber} מ${flight.origin} ל${flight.destination} בתאריך ${flight.date} בשעה ${flight.time}`);
+  // פונקציה להזמנת טיסה
+  bookFlight(flight: Flight) {
+    const headers = new HttpHeaders().set('Authorization', `Bearer ${this.authService.getToken()}`);
+    
+    this.http.post(`${this.apiUrl}/bookings`, { flightNumber: flight.flightNumber }, { headers })
+      .subscribe(response => {
+        alert(`הזמנתך עבור הטיסה ${flight.flightNumber} בוצעה בהצלחה!`);
+      }, error => {
+        console.error('Error booking flight:', error);
+        alert('אירעה שגיאה בעת הזמנת הטיסה. אנא נסה שוב.');
+      });
   }
 }
