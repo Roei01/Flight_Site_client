@@ -7,8 +7,8 @@ import { Component } from '@angular/core';
 })
 export class SlideshowComponent {
   slides = [
-    { image: '../../../../assets/images/pettwo.png' },
-    { image: '../../../../assets/images/fourp.png' },
+    { image: '../../../../assets/images/backgroundLogin.png' },
+    { image: '../../../../assets/images/backgroundLogin.png' },
   ];
   currentSlide = 0;
 
