@@ -14,16 +14,16 @@ describe('AppComponent', () => {
     expect(app).toBeTruthy();
   });
 
-  it(`should have the 'paw-pal-network-client' title`, () => {
+  it(`should have the 'Flight_Site_client' title`, () => {
     const fixture = TestBed.createComponent(AppComponent);
     const app = fixture.componentInstance;
-    expect(app.title).toEqual('paw-pal-network-client');
+    expect(app.title).toEqual('Flight_Site_client');
   });
 
   it('should render title', () => {
     const fixture = TestBed.createComponent(AppComponent);
     fixture.detectChanges();
     const compiled = fixture.nativeElement as HTMLElement;
-    expect(compiled.querySelector('h1')?.textContent).toContain('Hello, paw-pal-network-client');
+    expect(compiled.querySelector('h1')?.textContent).toContain('Hello, Flight_Site_client');
   });
 });

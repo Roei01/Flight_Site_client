@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "paw-pal-network-client": {
+    "Flight_Site_client": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
@@ -17,7 +17,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:application",
           "options": {
-            "outputPath": "dist/paw-pal-network-client",
+            "outputPath": "dist/Flight_Site_client",
             "index": "src/index.html",
             "browser": "src/main.ts",
             "polyfills": [
@@ -66,10 +66,10 @@
           },
           "configurations": {
             "production": {
-              "buildTarget": "paw-pal-network-client:build:production"
+              "buildTarget": "Flight_Site_client:build:production"
             },
             "development": {
-              "buildTarget": "paw-pal-network-client:build:development"
+              "buildTarget": "Flight_Site_client:build:development"
             }
           },
           "defaultConfiguration": "development"

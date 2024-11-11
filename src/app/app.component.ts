@@ -6,5 +6,5 @@ import { Component } from '@angular/core';
   styleUrl: './app.component.scss'
 })
 export class AppComponent {
-  title = 'paw-pal-network-client';
+  title = 'Flight_Site_client';
 }
