@@ -30,7 +30,7 @@ interface Post {
 
 }
 
-
+// Check
 interface Interest {
   _id: string;
   name: string;
