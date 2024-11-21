@@ -61,7 +61,7 @@ In your Angular services or environment configuration, make sure the apiUrl poin
 
 typescript
 Copy code
-private apiUrl = 'http://localhost:3000'; // Adjust this to your backend URL
+private apiUrl = 'https://flight-site-server.onrender.com'; // Adjust this to your backend URL
 This README provides a comprehensive overview of the client setup, features, and usage. It is structured to be clear and informative for anyone setting up or working with the client project.
 
 
