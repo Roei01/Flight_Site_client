@@ -7,7 +7,6 @@ interface Flight {
   origin: string;
   destination: string;
   date: string;
-  time: string;
   price: number;
   bookingLink: string;
 }
@@ -15,62 +14,78 @@ interface Flight {
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
-  styleUrls: ['./home.component.scss']
+  styleUrls: ['./home.component.scss'],
 })
 export class HomeComponent implements OnInit {
   origin: string = '';
   destination: string = '';
   date: string = '';
   flightResults: Flight[] = [];
-  private apiUrl = 'http://localhost:3000'; // Replace with your server's API URL
+  private apiUrl = 'http://localhost:3000'; // Backend API URL
 
   constructor(private http: HttpClient, private authService: AuthService) {}
 
   ngOnInit(): void {
-    this.loadAllFlights(); // Load all flights on component initialization
+    this.loadAllFlights(); // Load all flights on initialization
   }
 
   // Load all available flights
-  loadAllFlights() {
+  loadAllFlights(): void {
     this.http.get<Flight[]>(`${this.apiUrl}/flights`).subscribe(
-      results => {
+      (results) => {
         this.flightResults = results;
       },
-      error => {
+      (error) => {
         console.error('Error loading all flights:', error);
+        alert('Failed to load flights. Please try again later.');
       }
     );
   }
 
-  // Search flights based on parameters
-  searchFlights() {
+  // Search for flights based on input parameters
+  searchFlights(): void {
     const searchParams = {
-      origin: this.origin,
-      destination: this.destination,
+      origin: this.origin.trim(),
+      destination: this.destination.trim(),
       date: this.date,
     };
 
+    if (!searchParams.origin || !searchParams.destination || !searchParams.date) {
+      alert('Please fill in all search fields.');
+      return;
+    }
+
     this.http.get<Flight[]>(`${this.apiUrl}/flights`, { params: searchParams }).subscribe(
-      results => {
+      (results) => {
         this.flightResults = results;
       },
-      error => {
+      (error) => {
         console.error('Error searching flights:', error);
+        alert('Failed to search flights. Please try again.');
       }
     );
   }
 
-  // Book a selected flight
-  bookFlight(flight: Flight) {
-    const headers = new HttpHeaders().set('Authorization', `Bearer ${this.authService.getToken()}`);
-    
-    this.http.post(`${this.apiUrl}/bookings`, { flightNumber: flight.flightNumber }, { headers }).subscribe(
-      response => {
-        alert(`Your booking for flight ${flight.flightNumber} was successful!`);
+  // Book a flight
+  bookFlight(flight: Flight): void {
+    console.log('Booking flight:', flight.flightNumber); // Log for debugging
+    const headers = new HttpHeaders().set(
+      'Authorization',
+      `Bearer ${this.authService.getToken()}`
+    );
+
+    this.http.post<{ message: string; bookingLink: string }>(
+      `${this.apiUrl}/bookings`,
+      { flightNumber: flight.flightNumber }, // Ensure correct flightNumber
+      { headers }
+    ).subscribe(
+      (response) => {
+        alert(response.message); // Show confirmation message
+        window.open(response.bookingLink, '_blank'); // Open booking link in a new tab
       },
-      error => {
+      (error) => {
         console.error('Error booking flight:', error);
-        alert('There was an error booking the flight. Please try again.');
+        alert('Failed to book the flight. Please try again later.');
       }
     );
   }
