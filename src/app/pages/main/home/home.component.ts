@@ -31,7 +31,7 @@ export class HomeComponent implements OnInit {
   userBookings: Booking[] = [];
   showSuccessMessage: boolean = false;
   successMessage: string = '';
-  private apiUrl = 'http://localhost:3000'; // Backend API URL
+  private apiUrl = 'https://flight-site-server.onrender.com'; // Backend API URL
 
   constructor(private http: HttpClient, private authService: AuthService) {}
 
