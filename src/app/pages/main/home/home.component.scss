@@ -110,151 +110,185 @@
     display: none;
   }
 }
-// דף הבית
-.home-container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding: 40px 20px;
-  background: linear-gradient(135deg, #e0eafc, #cfdef3);
-  min-height: 100vh;
-
-  h2 {
-    color: #1e2a38;
-    font-size: 2.2rem;
-    margin-bottom: 2rem;
-    text-align: center;
-  }
+// General Styling
+body {
+  font-family: 'Arial', sans-serif;
+  background: linear-gradient(135deg, #74b9ff, #0984e3);
+  color: #333;
+  margin: 0;
+  padding: 0;
 }
 
-// עיצוב לטופס החיפוש
+// Search Container
 .flight-search-container {
-  background: #ffffff;
-  border: 1px solid #dfe7f3;
-  border-radius: 15px;
-  padding: 25px;
-  width: 100%;
   max-width: 600px;
-  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+  margin: 50px auto;
+  background: #fff;
+  padding: 30px;
+  border-radius: 10px;
+  box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
+  text-align: center;
 
-  form {
+  .title {
+    font-size: 28px;
+    margin-bottom: 20px;
+    color: #2d3436;
+  }
+
+  .search-form {
     display: flex;
     flex-direction: column;
-    gap: 1.2rem;
+    gap: 15px;
 
-    label {
-      font-weight: bold;
-      color: #1e2a38;
-    }
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      text-align: left;
 
-    input {
-      padding: 12px;
-      border: 1px solid #dfe7f3;
-      border-radius: 8px;
-      transition: border-color 0.3s;
+      label {
+        font-weight: bold;
+        margin-bottom: 5px;
+      }
 
-      &:focus {
-        border-color: #3b82f6;
+      input {
+        padding: 10px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        font-size: 14px;
         outline: none;
+
+        &:focus {
+          border-color: #0984e3;
+          box-shadow: 0 0 5px rgba(0, 132, 227, 0.5);
+        }
       }
     }
 
-    button[type="submit"] {
-      margin-top: 1rem;
-      padding: 12px;
-      background-color: #3b82f6;
-      color: #fff;
-      font-size: 1rem;
-      font-weight: bold;
+    .search-btn {
+      padding: 12px 20px;
+      background: #0984e3;
       border: none;
-      border-radius: 8px;
+      border-radius: 5px;
+      color: #fff;
+      font-size: 16px;
       cursor: pointer;
-      transition: background-color 0.3s;
+      transition: background 0.3s;
 
       &:hover {
-        background-color: #1f5fbf;
+        background: #74b9ff;
       }
     }
   }
 }
 
-// כפתור לטעינת כל הטיסות
-button {
-  margin-top: 20px;
-  padding: 12px 24px;
-  background-color: #34d399;
-  color: #fff;
-  font-size: 1rem;
-  font-weight: bold;
-  border: none;
-  border-radius: 8px;
-  cursor: pointer;
-  transition: background-color 0.3s;
+// Flight Results
+.flight-results,
+.user-bookings {
+  max-width: 800px;
+  margin: 20px auto;
+  padding: 20px;
+  background: #fff;
+  border-radius: 10px;
+  box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
 
-  &:hover {
-    background-color: #2bb07e;
+  h2 {
+    font-size: 22px;
+    text-align: center;
+    margin-bottom: 20px;
+    color: #2d3436;
+  }
+
+  .flight-card,
+  .booking-card {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    margin-bottom: 15px;
+
+    .flight-details,
+    p {
+      font-size: 14px;
+    }
+
+    .btn {
+      padding: 10px 15px;
+      border: none;
+      border-radius: 5px;
+      font-size: 14px;
+      cursor: pointer;
+
+      &.book-btn {
+        background: #0984e3;
+        color: #fff;
+
+        &:hover {
+          background: #74b9ff;
+        }
+
+        &:disabled {
+          background: #ccc;
+          cursor: not-allowed;
+        }
+      }
+
+      &.cancel-btn {
+        background: #d63031;
+        color: #fff;
+
+        &:hover {
+          background: #e17055;
+        }
+      }
+    }
   }
 }
+.welcome-message {
+  text-align: center;
+  margin-top: 20px;
+  font-size: 24px;
+  color: #333;
+}
 
-// תוצאות הטיסות
-.flight-results {
-  margin-top: 2rem;
+// Success Message
+.success-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
   width: 100%;
-  max-width: 600px;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.7);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
 
-  h3 {
-    color: #1e2a38;
-    font-size: 1.8rem;
-    text-align: center;
-    margin-bottom: 1.5rem;
-  }
-
-  // כל תיבת כרטיס לטיסה
-  .flight-card {
-    background: #ffffff;
-    border: 1px solid #dfe7f3;
-    border-radius: 12px;
+  .success-message {
+    background: #0984e3;
+    color: #fff;
     padding: 20px;
-    margin-bottom: 1.5rem;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
-    transition: transform 0.2s, box-shadow 0.2s;
-
-    &:hover {
-      transform: translateY(-4px);
-      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
-    }
+    border-radius: 10px;
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.5);
+    font-size: 18px;
+    text-align: center;
+    animation: fadeIn 0.3s ease;
 
     p {
       margin: 0;
-      color: #3a3a3a;
-      font-size: 1.1rem;
-    }
-
-    .price {
-      color: #1f5fbf;
-      font-weight: bold;
-      font-size: 1.3rem;
-      margin-top: 0.5rem;
-    }
-
-    .booking-btn {
-      padding: 10px 20px;
-      background-color: #f87171;
-      color: #fff;
-      font-size: 1rem;
-      font-weight: bold;
-      border: none;
-      border-radius: 6px;
-      cursor: pointer;
-      transition: background-color 0.3s;
-      margin-top: 1rem;
-
-      &:hover {
-        background-color: #ef4444;
-      }
     }
   }
+}
+
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+
+  
 }
