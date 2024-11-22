@@ -146,5 +146,9 @@ export class HomeComponent implements OnInit {
       }
     );
   }
-    
+    // פונקציית logout
+    logout() {
+      this.authService.logout();
+    }
+
 }
