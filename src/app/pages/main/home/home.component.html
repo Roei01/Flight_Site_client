@@ -4,7 +4,7 @@
   <div class="ad-box-wrapper">
     <!-- First Set of Advertisements -->
     <div class="ad-box">
-      <img src="../../../../assets/images/flight_deals.webp" alt="Flight Deals" class="ad-image">
+      <img src="../../../../assets/images/ad2.png" alt="Flight Deals" class="ad-image">
       <div class="ad-content">
         <h4>Exclusive Flight Deals Await!</h4>
         <p>Discover unbeatable prices on flights to your favorite destinations.</p>
@@ -13,7 +13,7 @@
     </div>
 
     <div class="ad-box">
-      <img src="../../../../assets/images/manage_booking.webp" alt="Manage Booking" class="ad-image">
+      <img src="../../../../assets/images/ad1.png" alt="Manage Booking" class="ad-image">
       <div class="ad-content">
         <h4>Manage Your Booking</h4>
         <p>View and modify your flight details with ease.</p>
@@ -22,7 +22,7 @@
     </div>
 
     <div class="ad-box">
-      <img src="../../../../assets/images/travel_tips.webp" alt="Travel Tips" class="ad-image">
+      <img src="../../../../assets/images/ad3.png" alt="Travel Tips" class="ad-image">
       <div class="ad-content">
         <h4>Travel Tips & Guides</h4>
         <p>Get the latest insights to make your journey smoother.</p>
@@ -31,7 +31,7 @@
     </div>
 
     <div class="ad-box">
-      <img src="../../../../assets/images/loyalty_program.webp" alt="Loyalty Program" class="ad-image">
+      <img src="../../../../assets/images/ad4.png" alt="Loyalty Program" class="ad-image">
       <div class="ad-content">
         <h4>Join Our Loyalty Program</h4>
         <p>Earn points and enjoy exclusive benefits on every booking.</p>
@@ -53,7 +53,7 @@
   <div class="ad-box-wrapper">
     <!-- Repeating the Advertisements for a Cyclic Effect -->
     <div class="ad-box">
-      <img src="../../../../assets/images/flight_deals.webp" alt="Flight Deals" class="ad-image">
+      <img src="../../../../assets/images/ad2.png" alt="Flight Deals" class="ad-image">
       <div class="ad-content">
         <h4>Exclusive Flight Deals Await!</h4>
         <p>Discover unbeatable prices on flights to your favorite destinations.</p>
@@ -62,7 +62,7 @@
     </div>
 
     <div class="ad-box">
-      <img src="../../../../assets/images/manage_booking.webp" alt="Manage Booking" class="ad-image">
+      <img src="../../../../assets/images/ad1.png" alt="Manage Booking" class="ad-image">
       <div class="ad-content">
         <h4>Manage Your Booking</h4>
         <p>View and modify your flight details with ease.</p>
@@ -71,7 +71,7 @@
     </div>
 
     <div class="ad-box">
-      <img src="../../../../assets/images/travel_tips.webp" alt="Travel Tips" class="ad-image">
+      <img src="../../../../assets/images/ad3.png" alt="Travel Tips" class="ad-image">
       <div class="ad-content">
         <h4>Travel Tips & Guides</h4>
         <p>Get the latest insights to make your journey smoother.</p>
@@ -80,7 +80,7 @@
     </div>
 
     <div class="ad-box">
-      <img src="../../../../assets/images/loyalty_program.webp" alt="Loyalty Program" class="ad-image">
+      <img src="../../../../assets/images/ad4.png" alt="Loyalty Program" class="ad-image">
       <div class="ad-content">
         <h4>Join Our Loyalty Program</h4>
         <p>Earn points and enjoy exclusive benefits on every booking.</p>
@@ -99,50 +99,47 @@
   </div>
 </div>
 
-<div class="home-container">
-  <!-- Flight Search Section -->
-  <div class="flight-search-container">
-    <h2>Search Flights</h2>
-    <form (ngSubmit)="searchFlights()">
-      <label for="origin">Origin:</label>
-      <input
-        id="origin"
-        [(ngModel)]="origin"
-        name="origin"
-        placeholder="Enter origin airport"
-      />
+<div class="welcome-message">
+  <h1>Hello, {{ userName }}</h1>
+</div>
 
-      <label for="destination">Destination:</label>
-      <input
-        id="destination"
-        [(ngModel)]="destination"
-        name="destination"
-        placeholder="Enter destination airport"
-      />
-
-      <label for="date">Date:</label>
+<div class="flight-search-container">
+  <h1 class="title">Find Your Perfect Flight</h1>
+  <form (ngSubmit)="searchFlights()" class="search-form">
+    <div class="form-group">
+      <label for="origin">Origin</label>
+      <input id="origin" [(ngModel)]="origin" name="origin" placeholder="Enter origin airport" />
+    </div>
+    <div class="form-group">
+      <label for="destination">Destination</label>
+      <input id="destination" [(ngModel)]="destination" name="destination" placeholder="Enter destination airport" />
+    </div>
+    <div class="form-group">
+      <label for="date">Date</label>
       <input id="date" type="date" [(ngModel)]="date" name="date" />
+    </div>
+    <button type="submit" class="btn search-btn">Search Flights</button>
+  </form>
+</div>
 
-      <button type="submit">Search Flights</button>
-    </form>
-  </div>
-
-  <button (click)="loadAllFlights()">Show All Flights</button>
-
-  <!-- Flight Results Section -->
-  <div *ngIf="flightResults.length > 0" class="flight-results">
-    <h3>Flight Results</h3>
-    <div *ngFor="let flight of flightResults" class="flight-card">
-      <p><strong>{{ flight.origin }} → {{ flight.destination }}</strong></p>
+<div class="flight-results">
+  <h2>Available Flights</h2>
+  <div *ngFor="let flight of flightResults" class="flight-card">
+    <div class="flight-details">
+      <p><strong>{{ flight.origin }}</strong> → <strong>{{ flight.destination }}</strong></p>
       <p><strong>Date:</strong> {{ flight.date }}</p>
       <p><strong>Price:</strong> ${{ flight.price }}</p>
-      <button class="booking-btn" (click)="bookFlight(flight)">Book Now</button>
-      <a
-        [href]="flight.bookingLink"
-        target="_blank"
-        class="details-link"
-        >Details</a
-      >
+      <p><strong>Seats Available:</strong> {{ flight.seatsAvailable }}</p>
     </div>
+    <button
+      class="btn toggle-btn"
+      [ngClass]="{
+        'book-btn': !hasBooked(flight.flightNumber),
+        'cancel-btn': hasBooked(flight.flightNumber)
+      }"
+      (click)="toggleBooking(flight)"
+    >
+      {{ hasBooked(flight.flightNumber) ? 'Cancel Booking' : 'Book Now' }}
+    </button>
   </div>
 </div>
