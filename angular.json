@@ -94,7 +94,10 @@
               "@angular/material/prebuilt-themes/azure-blue.css",
               "src/styles.scss"
             ],
-            "scripts": []
+            "scripts": [],
+            "include": [
+              "tests/**/*.spec.js"
+            ]
           }
         }
       }
