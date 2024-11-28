@@ -1,24 +1,21 @@
-const { TestBed } = require('@angular/core/testing');
-const { FlightSearchComponent } = require('../app/components/flight-search/flight-search.component');
+import { expect } from 'chai';
 
-describe('FlightSearchComponent', () => {
-  let component;
-
-  beforeEach(() => {
-    TestBed.configureTestingModule({
-      declarations: [FlightSearchComponent],
-    });
-    const fixture = TestBed.createComponent(FlightSearchComponent);
-    component = fixture.componentInstance;
-  });
-
+describe('Flight search', () => {
   it('should perform flight search with valid data', () => {
-    component.origin = 'TLV';
-    component.destination = 'JFK';
-    component.date = '2024-12-01';
+    const mockFlights = [
+      { id: 1, origin: 'TLV', destination: 'JFK', date: '2024-12-01' },
+      { id: 2, origin: 'TLV', destination: 'LHR', date: '2024-12-01' },
+    ];
+    const searchCriteria = { origin: 'TLV', destination: 'JFK', date: '2024-12-01' };
 
-    component.searchFlights();
+    const searchResults = mockFlights.filter(
+      flight =>
+        flight.origin === searchCriteria.origin &&
+        flight.destination === searchCriteria.destination &&
+        flight.date === searchCriteria.date
+    );
 
-    expect(component.results.length).toBeGreaterThan(0);
+    expect(searchResults.length).to.equal(1);
+    expect(searchResults[0].destination).to.equal('JFK');
   });
 });

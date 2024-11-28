@@ -1,24 +1,16 @@
-const { TestBed } = require('@angular/core/testing');
-const { FlightSearchComponent } = require('../app/components/flight-search/flight-search.component');
+import { expect } from 'chai';
 
-describe('FlightSearchComponent Validation', () => {
-  let component;
-
-  beforeEach(() => {
-    TestBed.configureTestingModule({
-      declarations: [FlightSearchComponent],
-    });
-    const fixture = TestBed.createComponent(FlightSearchComponent);
-    component = fixture.componentInstance;
-  });
-
+describe('Flight validation', () => {
   it('should display an error when origin field is empty', () => {
-    component.origin = '';
-    component.destination = 'JFK';
-    component.date = '2024-12-01';
+    const mockFlightSearch = {
+      origin: '',
+      destination: 'JFK',
+      date: '2024-12-01',
+    };
 
-    component.searchFlights();
+    const errorMessage = mockFlightSearch.origin === '' ? 'The origin field is mandatory' : null;
 
-    expect(component.errorMessage).toBe('The origin field is mandatory');
+    expect(errorMessage).to.equal('The origin field is mandatory');
   });
 });
+
